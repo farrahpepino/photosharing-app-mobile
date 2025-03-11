@@ -102,7 +102,7 @@ export default function ProfileStats({ userId }: { userId: string }) {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     flexDirection: 'row',
     width: '80%',
@@ -112,8 +112,6 @@ const styles = StyleSheet.create({
   stat: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingLeft: 30,
-    paddingRight: 40,
   },
   boldText: {
     fontWeight: 'bold',

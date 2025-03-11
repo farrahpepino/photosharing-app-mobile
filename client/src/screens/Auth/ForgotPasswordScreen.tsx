@@ -15,7 +15,8 @@ export default function ForgotPasswordScreen({ navigation }) {
     }
 
     try {
-      await sendPasswordResetEmail(auth, email);
+      await sendPasswordResetEmail(auth, email)
+      .then(() => console.log('Email sent successfully'))
       Alert.alert('Success', 'Password reset email sent!');
       navigation.goBack(); 
     } catch (error) {

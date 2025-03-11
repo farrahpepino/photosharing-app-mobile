@@ -29,11 +29,9 @@ export const useChatRooms = (currentUserId: string) => {
   useEffect(() => {
     const fetchChatRooms = async () => {
       try {
-        // Get the chat rooms for the current user
         const chatRoomSnapshots = await getDocs(collection(FIREBASE_DB, `users/${auth.currentUser.uid}/chats`));
         const chatRoomIds = chatRoomSnapshots.docs.map(doc => doc.id);
 
-        // Fetch chat room details
         const chatRoomsData = await Promise.all(chatRoomIds.map(async (chatRoomId) => {
           const chatRoomDocRef = doc(FIREBASE_DB, `chats/${chatRoomId}`);
           const chatRoomDoc = await getDoc(chatRoomDocRef);

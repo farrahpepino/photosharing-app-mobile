@@ -99,7 +99,6 @@ export const updateUserActivity = async (userId: string, updates: any) => {
     await updateDoc(userRef, updates);
     console.log('User activity updated successfully');
 
-    // Verify the update
     const updatedDoc = await getDoc(userRef);
     if (updatedDoc.exists()) {
       console.log('Updated document data:', updatedDoc.data());

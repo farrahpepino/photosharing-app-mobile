@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, Linking, TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
+import { SafeAreaView, TouchableOpacity, View, Text, StyleSheet, Image } from 'react-native';
 import { FIREBASE_AUTH } from '../../../FirebaseConfig';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackParamList } from '../../types';
