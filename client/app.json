@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Archives-mobile",
+    "slug": "Archives-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/tala.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/images/4.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0d0d0d"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fpepino1.Archives-mobile"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/tala.png",
+        "backgroundColor": "#0d0d0d"
+      }
+    },
+    "web": {
+      "favicon": "./assets/images/5.png"
+    }
+  }
+}
