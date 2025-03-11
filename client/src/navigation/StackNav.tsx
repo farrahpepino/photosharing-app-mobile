@@ -20,7 +20,6 @@ import ConnectionsList from '../screens/Main/ConnectionsList';
 import NotificationScreen from '../screens/Main/NotificationScreen';
 import LikesScreen from '../screens/Main/LikesScreen';
 const Stack = createNativeStackNavigator<StackParamList>();
-
 const CloseButton: React.FC<CloseButtonProps> = ({ navigation }) => {
 
   return (
