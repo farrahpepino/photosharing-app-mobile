@@ -156,9 +156,7 @@ const PostCard = ({ postData, uid, postId }: PostCardProps) => {
       const likesRef = collection(postRef, 'likes');
       const notificationsRef = collection(FIREBASE_DB, 'notifications');
 
-      Alert.alert(
-        'Delete Post',
-        'Are you sure you want to delete this post? This will also delete all associated comments and likes.',
+      Alert.alert('Delete Post', 'Are you sure you want to delete this post? This will also delete all associated comments and likes.',
         [
           {
             text: 'Cancel',
@@ -189,8 +187,6 @@ const PostCard = ({ postData, uid, postId }: PostCardProps) => {
             const storageRef = ref(FIREBASE_STORAGE, `users/${FIREBASE_AUTH.currentUser?.uid}/Posts/${postId}.jpg`);
             await deleteObject(storageRef);           
             await deleteDoc(postRef);
-
-            console.log('Post and associated data deleted');
             },
           },
         ],
@@ -264,9 +260,7 @@ const PostCard = ({ postData, uid, postId }: PostCardProps) => {
   
   const handleDeleteComment = async (commentId: string) => {
     try {
-      Alert.alert(
-        'Delete Comment',
-        'Are you sure you want to delete this comment?',
+      Alert.alert('Delete Comment', 'Are you sure you want to delete this comment?',
         [
           { text: 'Cancel', style: 'cancel' },
           {
@@ -281,9 +275,7 @@ const PostCard = ({ postData, uid, postId }: PostCardProps) => {
                   comments: arrayRemove(commentToRemove),
                 });
   
-                setComments(prevComments => prevComments.filter(comment => comment.id !== commentId));
-                console.log('Comment deleted');
-                
+                setComments(prevComments => prevComments.filter(comment => comment.id !== commentId));                
                 const notificationsQuery = query(
                   collection(FIREBASE_DB, 'notifications'),
                   where('userId', '==', uid),
@@ -306,18 +298,15 @@ const PostCard = ({ postData, uid, postId }: PostCardProps) => {
     }
   };
   
- 
-  
   if (loading) {
     return;
   }
   
-  
   else if (!user || !post) {
     return <Paragraph>No data found.</Paragraph>;
   }
+
   return (
-    
     <Card 
     style={[styles.card]}>
          <TouchableOpacity onPress={goToUserProfile}>
@@ -348,9 +337,7 @@ const PostCard = ({ postData, uid, postId }: PostCardProps) => {
         <TouchableOpacity onPress={openCommentModal}>
           <Ionicons style={{ paddingRight: 10 }} name="chatbubble-outline" size={25} color="#0d0d0d" />
         </TouchableOpacity>
-        {/* <TouchableOpacity>
-          <Ionicons name="send-outline" size={23} color="#0d0d0d" />
-        </TouchableOpacity> */}
+
       </View>
       <Card.Content>
         <TouchableOpacity 

@@ -60,20 +60,16 @@ export default function EditProfileScreen() {
   
           const allUsersRef = collection(FIREBASE_DB, 'users');
           const allUsersSnapshot = await getDocs(allUsersRef);
-          console.log(`Found ${allUsersSnapshot.docs.length} users`);
   
           for (const docSnapshot of allUsersSnapshot.docs) {
               const otherUserId = docSnapshot.id;
-              console.log(`Processing user ${otherUserId}`);
   
               const otherUserPostsRef = collection(FIREBASE_DB, 'users', otherUserId, 'posts');
               const otherUserPostsSnapshot = await getDocs(otherUserPostsRef);
-              console.log(`Found ${otherUserPostsSnapshot.docs.length} posts for user ${otherUserId}`);
   
               for (const postDoc of otherUserPostsSnapshot.docs) {
                   const postId = postDoc.id;
                   const postData = postDoc.data();
-                  console.log(`Processing post ${postId}`);
   
                   const updatedComments = postData.comments.filter((comment: any) => comment.userId !== userId);
                   const updatedLikes = postData.likes.filter((likeId: string) => likeId !== userId);
@@ -95,10 +91,7 @@ export default function EditProfileScreen() {
             await deleteDoc(doc.ref);
         });
 
-        const notificationsQueryFromUser = query(
-            notificationsRef,
-            where('fromUserId', '==', userId)
-        );
+        const notificationsQueryFromUser = query(notificationsRef, where('fromUserId', '==', userId));
         const notificationsSnapshotFromUser = await getDocs(notificationsQueryFromUser);
         notificationsSnapshotFromUser.forEach(async (doc) => {
             await deleteDoc(doc.ref);
@@ -106,14 +99,11 @@ export default function EditProfileScreen() {
 
         const storageRef = ref(FIREBASE_STORAGE, `users/${userId}`);
           await deleteObject(storageRef);
-          
           const userDocRef = doc(FIREBASE_DB, 'users', userId);
           await deleteDoc(userDocRef);
           await deleteUser(FIREBASE_AUTH.currentUser);
-  
           navigation.navigate('LoginScreen');
       } catch (error) {
-          console.error('Error deleting account:', error);
           Alert.alert('Error', 'Failed to delete account. Please try again later.');
       }
   };

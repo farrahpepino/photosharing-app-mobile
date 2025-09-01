@@ -5,12 +5,12 @@ import { StackParamList } from '../../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import { goToUserProfile } from '../Main/functions';
+
 const MessageScreen = ({ route }) => {
   const navigation = useNavigation<StackNavigationProp<StackParamList, 'MessageScreen'>>();
   const { userId, chatRoomId, photoUrl, name, username, currentUserId } = route.params;
   const messages = useMessages(chatRoomId);
   const [message, setMessage] = useState('');
-  
 
   const formatTimestamp = (timestamp) => {
     if (!timestamp) return '';

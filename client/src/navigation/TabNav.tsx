@@ -13,7 +13,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { StackParamList } from '../types';
 import { FIREBASE_AUTH, FIREBASE_DB } from '../../FirebaseConfig';
 import { collection, query, where, onSnapshot } from 'firebase/firestore';
-import Messages from '../screens/Messages/Messages';
 const Tab = createBottomTabNavigator<TabParamList>();
 
 type TabNavProp = CompositeNavigationProp<
@@ -34,10 +33,7 @@ export default function TabNav() {
     const notificationRef = collection(FIREBASE_DB, 'notifications');
     const notificationQuery = query(notificationRef, where('userId', '==', userId), where('read', '==', false));
 
-    const unsubscribeNotifications = onSnapshot(notificationQuery, (snapshot) => {
-      setUnreadNotifications(snapshot.size);
-    });
-
+    const unsubscribeNotifications = onSnapshot(notificationQuery, (snapshot) => {setUnreadNotifications(snapshot.size); });
     const messagesRef = collection(FIREBASE_DB, 'users', userId, 'chats');
     const messagesQuery = query(messagesRef, where('isLatest', '==', true), where('seen', '==', false));
 
@@ -49,7 +45,8 @@ export default function TabNav() {
       unsubscribeNotifications();
       unsubscribeMessages();
     };
-  }, []);
+
+    }, []);
 
   return (
     <Tab.Navigator
@@ -105,8 +102,7 @@ export default function TabNav() {
           paddingTop: 0,
           paddingBottom: 0,
         },
-      })}
-    >
+      })}>
       <Tab.Screen
         name="Feed"
         component={FeedScreen}
@@ -125,35 +121,36 @@ export default function TabNav() {
           ),
         }}
       />
-      <Tab.Screen
-        name="SearchScreen"
-        component={SearchScreen}
-        options={{
-          headerShown: false,
-          title: '',
-        }}
-      />
-      <Tab.Screen
-        name="Post"
-        component={Post}
-        options={{ title: 'New Post', tabBarLabel: '' }}
-      />
-      <Tab.Screen
-        name="NotificationScreen"
-        component={NotificationScreen}
-        options={{
-          headerShown: false,
-          title: '',
-        }}
-      />
-      <Tab.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
-        options={{
-          headerShown: false,
-          title: '',
-        }}
-      />
+        
+        <Tab.Screen
+          name="SearchScreen"
+          component={SearchScreen}
+          options={{
+            headerShown: false,
+            title: '',
+          }}
+        />
+        <Tab.Screen
+          name="Post"
+          component={Post}
+          options={{ title: 'New Post', tabBarLabel: '' }}
+        />
+        <Tab.Screen
+          name="NotificationScreen"
+          component={NotificationScreen}
+          options={{
+            headerShown: false,
+            title: '',
+          }}
+        />
+        <Tab.Screen
+          name="ProfileScreen"
+          component={ProfileScreen}
+          options={{
+            headerShown: false,
+            title: '',
+          }}
+        />
     </Tab.Navigator>
   );
 }

@@ -9,19 +9,8 @@ export default function ForgotPasswordScreen({ navigation }) {
   const auth = FIREBASE_AUTH;
 
   const handleForgotPassword = async () => {
-    if (!email) {
-      Alert.alert('Error', 'Please enter your email address');
-      return;
-    }
-
-    try {
-      await sendPasswordResetEmail(auth, email)
-      .then(() => console.log('Email sent successfully'))
-      Alert.alert('Success', 'Password reset email sent!');
-      navigation.goBack(); 
-    } catch (error) {
-      Alert.alert('Error', error.message);
-    }
+    await sendPasswordResetEmail(auth, email);
+    navigation.goBack(); 
   };
 
   return (

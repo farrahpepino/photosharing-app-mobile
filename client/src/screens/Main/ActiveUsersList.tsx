@@ -107,7 +107,6 @@ const ActiveUsersList = ({ currentUserId }: { currentUserId: string }) => {
   useEffect(() => {
     const fetchUsers = async () => {
       const users = await fetchActiveFollowedUsers(currentUserId);
-      console.log('Fetched users:', users);
       setActiveUsers(users);
     };
     fetchUsers();

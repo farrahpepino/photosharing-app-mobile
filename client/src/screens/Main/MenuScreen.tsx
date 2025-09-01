@@ -25,17 +25,9 @@ export default function MenuScreen() {
     };
     async function handleLogout() {
         try {
-
-            try {
-                
-                await updateUserActivity(FIREBASE_AUTH.currentUser?.uid, { status: 'inactive' });
-                await auth.signOut();
-
-              } catch (error) {
-                console.error('Failed to update user activity:', error);
-              }
-            
-              navigation.replace('LoginScreen');
+            await updateUserActivity(FIREBASE_AUTH.currentUser?.uid, { status: 'inactive' });
+            await auth.signOut();
+            navigation.replace('LoginScreen');
         } catch (error) {
             console.error('Error signing out: ', error);
         }

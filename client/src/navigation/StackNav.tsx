@@ -19,6 +19,7 @@ import ForgotPasswordScreen from '../screens/Auth/ForgotPasswordScreen';
 import ConnectionsList from '../screens/Main/ConnectionsList';
 import NotificationScreen from '../screens/Main/NotificationScreen';
 import LikesScreen from '../screens/Main/LikesScreen';
+
 const Stack = createNativeStackNavigator<StackParamList>();
 const CloseButton: React.FC<CloseButtonProps> = ({ navigation }) => {
 
@@ -51,81 +52,76 @@ export default function StackNav() {
           options={({ navigation }) => ({
             headerTitle: '',
             headerRight: () => <CloseButton navigation={navigation} />,
-          })}
-        />
+          })} />
+
         <Stack.Screen name="ConnectionsList" component={ConnectionsList}
         options={({ route }) => ({
           title: route.params.type === 'followers' ? 'Followers' : 'Following',
           headerShown: true,
-        })}
-      />
+        })} />
+
         <Stack.Screen name="TabNav" component={TabNav} options={{}} />
+
         <Stack.Screen
           name="PostDetailScreen"
           component={PostDetailScreen}
           options={{
             title: 'Posts',
             headerShown: true,
-          }}
-        />
+          }} />
+
         <Stack.Screen
           name="MenuScreen"
           component={MenuScreen}
           options={{
             title: 'Settings & Activity',
             headerShown: true,
-          }}
-        />
+          }} />
+
         <Stack.Screen
           name="EditProfileScreen"
           component={EditProfileScreen}
           options={{
             title: 'Edit Profile',
             headerShown: true,
-          }}
-        />
-          <Stack.Screen
+          }} />
+
+        <Stack.Screen
           name="UserProfile"
           component={UserProfile}
           options={{
             title: '',
             headerShown: true,
-          }}
-         
-        />
+          }} />
+
         <Stack.Screen
           name="MessageScreen"
           component={MessageScreen}
           options={{
             title: '',
             headerShown: true,
-          }}
-         
-        />
-          <Stack.Screen
+          }} />
+
+        <Stack.Screen
           name="ForgotPasswordScreen"
           component={ForgotPasswordScreen}
           options={{
             title: '',
             headerShown: true,
-          }}
-         
-        />
-         <Stack.Screen
+          }} />
+
+        <Stack.Screen
           name="Messages"
           component={Messages}
           options={{
             title: 'Messages',
             headerShown: true,
-          }}
-         
-        />
+          }} />
 
-          <Stack.Screen
+        <Stack.Screen
           name="SearchScreen"
-          component={SearchScreen}
-         
-        />
+          component={SearchScreen} />
+          
         <Stack.Screen name="MenuButton" component={MenuButton} />
         
       </Stack.Navigator>

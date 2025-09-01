@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { View, Image, FlatList, StyleSheet, Dimensions, Text, TouchableOpacity } from 'react-native';
-import { FIREBASE_DB, FIREBASE_AUTH } from '../../../FirebaseConfig'; 
+import { FIREBASE_DB } from '../../../FirebaseConfig'; 
 import { collection, getDocs, query, orderBy } from 'firebase/firestore';
-import { onAuthStateChanged } from 'firebase/auth';
 import { useFocusEffect } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';
 import { PostGridNavigationProp } from '../../types';
+
 const numColumns = 3;
 const screenWidth = Dimensions.get('window').width;
 const itemWidth = screenWidth / numColumns;
@@ -22,18 +22,14 @@ const PostGrid = ({userId}) => {
                 collection(FIREBASE_DB, "users", userId, "posts"),
                 orderBy("timestamp", "desc")
             );
-            const querySnapshot = await getDocs(postsQuery);
-            console.log('Query Snapshot:', querySnapshot);
-            
+            const querySnapshot = await getDocs(postsQuery);            
             if (querySnapshot.empty) {
-                console.log('No posts found for userId:', userId);
             }
             
             const postsData = querySnapshot.docs.map(doc => ({
                 id: doc.id,
                 ...doc.data(),
             }));
-            console.log('Posts Data:', postsData);
             setPosts(postsData);
         } catch (error) {
             console.error("Error fetching posts: ", error);

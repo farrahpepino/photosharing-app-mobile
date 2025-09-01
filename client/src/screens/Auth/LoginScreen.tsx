@@ -8,6 +8,7 @@ import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { LoginScreenProps } from '../../types';
 import { doc, getDoc } from 'firebase/firestore';
 import { updateUserActivity } from '../Main/functions';
+
 export default function LoginScreen ({ navigation }: LoginScreenProps) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -19,7 +20,6 @@ export default function LoginScreen ({ navigation }: LoginScreenProps) {
     setLoading(true);
     try {
       const response = await signInWithEmailAndPassword(auth, email, password);
-      console.log('User logged in:', response.user);
 
       const userId = response.user.uid;
       const userDocRef = doc(ARCHIVES_DB, 'users', userId);
@@ -27,10 +27,7 @@ export default function LoginScreen ({ navigation }: LoginScreenProps) {
 
       if (docSnap.exists()) {
         const userData = docSnap.data();
-        console.log('User data:', userData);
-    
         await updateUserActivity(userId, { status: 'active' });
-
         navigation.replace('TabNav', {
           screen: 'ProfileScreen',
           params: {
@@ -39,32 +36,16 @@ export default function LoginScreen ({ navigation }: LoginScreenProps) {
             bio: userData.bio,
           },
         });
-
-        checkAuthState();
-
       } else {
-        console.log('No such document.');
         alert('User data not found.');
       }
-    } catch (error:any) {
-      console.error('Login failed:', error.message);
+    } catch (error) {
       alert('Login failed: ' + error.message);
     } finally {
       setLoading(false);
     }
   };
-  const checkAuthState = () => {
-    onAuthStateChanged(FIREBASE_AUTH, (user) => {
-      if (user) {
-        console.log("User is signed in:", user.uid);
-      } else {
-        console.log("No user is signed in.");
-      }
-    });
-  };
-  
 
-  
   return (
     <SafeAreaView style={styles.container}>
       <Logo />

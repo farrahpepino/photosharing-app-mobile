@@ -7,7 +7,6 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { StackParamList } from '../../types';
 import { timeAgo } from './functions';
 import { Ionicons } from '@expo/vector-icons';
-import Icon from 'react-native-vector-icons/Ionicons';  
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
 interface Notification {

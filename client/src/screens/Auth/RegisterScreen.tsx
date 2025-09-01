@@ -31,15 +31,12 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
           bio: bio,
           createdAt: Timestamp.fromDate(new Date()),
         });
-        console.log(response);
-        console.log('Navigating to ProfileSetUpScreen');
         navigation.navigate('ProfileSetUpScreen', { name, username, bio });
       } else {
         throw new Error("User ID is undefined.");
       }
     } catch (error) {
       if (error instanceof Error) {
-        console.log(error);
         alert('Registration failed: ' + error.message);
       }
     } finally {

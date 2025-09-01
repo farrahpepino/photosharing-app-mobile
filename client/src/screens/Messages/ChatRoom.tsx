@@ -47,8 +47,6 @@ export const useChatRooms = (currentUserId: string) => {
               if (otherUserDoc.exists()) {
                 otherUserData = otherUserDoc.data();
               }
-              console.log('Other User Data:', otherUserData);
-
               return { id: chatRoomId, ...chatRoomData, otherUser: otherUserData };
             }
           }

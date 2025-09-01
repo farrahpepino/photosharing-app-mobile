@@ -60,7 +60,6 @@ const Post = ({ navigation }) => {
                     "state_changed",
                     (snapshot) => {
                         const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        console.log(`Upload is ${progress}% done`);
                         setProgress(Math.round(progress));
                     },
                     (error: any) => {
@@ -70,7 +69,6 @@ const Post = ({ navigation }) => {
                     async () => {
                         try {
                             const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                            console.log("File available at", downloadURL);
                             resolve(downloadURL);
                         } catch (error: any) {
                             console.error("Error getting download URL: ", error);

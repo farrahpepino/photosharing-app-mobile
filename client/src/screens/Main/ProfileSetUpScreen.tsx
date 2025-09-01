@@ -28,8 +28,6 @@ export default function ProfileSetUpScreen({navigation, route}: ProfileSetUpScre
         bio: bio,
       });
 
-      console.log("Bio updated successfully!");
-
       navigation.navigate('TabNav', {
         screen: 'ProfileScreen',
         params: {

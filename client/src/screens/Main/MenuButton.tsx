@@ -1,7 +1,6 @@
 import React from 'react';
-import { ScrollView, TouchableOpacity, StyleSheet, View, Text, LayoutChangeEvent } from 'react-native';
+import { TouchableOpacity, StyleSheet, View, Text, LayoutChangeEvent } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import MenuScreen from './MenuScreen';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StackParamList } from '../../types';
 import { useNavigation } from '@react-navigation/native';

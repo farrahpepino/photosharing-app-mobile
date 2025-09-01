@@ -26,11 +26,7 @@ export const getChatRoomId = async (currentUserId: string, otherUserId: string):
     return null;
   }
 };
-export const goToUserProfile = async (
-  navigation: StackNavigationProp<StackParamList, 'UserProfile'>,
-  uid: string
-) => {
-  console.log('uid:', uid);
+export const goToUserProfile = async (navigation: StackNavigationProp<StackParamList, 'UserProfile'>, uid: string) => {
   try {
     const userRef = doc(FIREBASE_DB, 'users', uid);
     const userSnap = await getDoc(userRef);
@@ -87,24 +83,12 @@ export const updateUserActivity = async (userId: string, updates: any) => {
 
   try {
     const userRef = doc(FIREBASE_DB, 'users', userId);
-    console.log(`Updating user ${userId} with data:`, updates);
-
-    // Ensure the document exists before updating
     const userDoc = await getDoc(userRef);
     if (!userDoc.exists()) {
       console.error(`Document for user ${userId} does not exist`);
       return;
     }
-
     await updateDoc(userRef, updates);
-    console.log('User activity updated successfully');
-
-    const updatedDoc = await getDoc(userRef);
-    if (updatedDoc.exists()) {
-      console.log('Updated document data:', updatedDoc.data());
-    } else {
-      console.warn('Updated document does not exist');
-    }
   } catch (error) {
     console.error('Error updating user activity:', error);
   }
@@ -126,12 +110,8 @@ export const fetchActiveFollowedUsers = async (currentUserId: string) => {
     const followingList = userData?.following || [];
 
     if (followingList.length === 0) {
-      console.log('No users to fetch');
       return [];
     }
-
-
-  
 
     const activeUsers = [];
     
@@ -152,8 +132,6 @@ export const fetchActiveFollowedUsers = async (currentUserId: string) => {
         });
       }
     }
-
-    console.log('Active users:', activeUsers);
     return activeUsers;
   } catch (error) {
     console.error('Error fetching active followed users:', error);

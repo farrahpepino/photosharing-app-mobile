@@ -118,7 +118,7 @@ export default function Avatar({ initialPhotoUrl }: AvatarProps) {
                         image ? { uri: image } : 
                         initialPhotoUrl ? { uri: initialPhotoUrl } : 
                         require('../../../assets/images/D9D9D9.png')
-                      }                    style={[styles.image, !image && initialPhotoUrl ? { opacity: 0.7 } : {}]} // Adjust opacity based on image state
+                      }                    style={[styles.image, !image && initialPhotoUrl ? { opacity: 0.7 } : {}]} 
                     accessibilityLabel="Profile image"
                 />
             </TouchableOpacity>

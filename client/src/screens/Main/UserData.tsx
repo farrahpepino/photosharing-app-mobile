@@ -21,7 +21,6 @@ export const fetchUserData = async (uid: string): Promise<UserData | null> => {
         photoUrl: userData.photoUrl 
       } as UserData;
     } else {
-      console.log('No such document.');
       return null;
     }
   } catch (error) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, Image, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { doc, getDoc } from 'firebase/firestore';
 import { FIREBASE_DB } from '../../../FirebaseConfig';
 import { useNavigation } from '@react-navigation/native';
@@ -42,12 +42,6 @@ export default function ConnectionsList({ route }) {
 
     fetchUsers();
   }, [userId, type]);
-
-  
-
-  if (error) {
-console.log(error);
-  }
 
   return (
     <View style={styles.container}>
