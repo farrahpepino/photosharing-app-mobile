@@ -61,7 +61,6 @@ export const useMessages = (chatRoomId: string) => {
 
     const unsubscribe = onSnapshot(messagesQuery, (snapshot) => {
       if (snapshot.empty) {
-        console.log('No messages found in chat room:', chatRoomId);
         setMessages([]);
       } else {
         const loadedMessages = snapshot.docs.map(doc => ({
@@ -98,7 +97,6 @@ export const useChatRooms = (currentUserId: string) => {
 
     const unsubscribe = onSnapshot(chatRoomsQuery, (snapshot) => {
       if (snapshot.empty) {
-        console.log('No chat rooms found for user:', currentUserId);
         setChatRooms([]);
       } else {
         const loadedChatRooms = snapshot.docs.map(doc => ({
